@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     public GameObject LoseTextObject;
     private Vector3 posicionInicio;
     private Vector4 posicionDerrota;
-    
+    private Vector3 posicionPodio;
     private float movementX;
     private float movementY;
     private int puntos;
@@ -39,6 +39,8 @@ public class PlayerController : MonoBehaviour
         posicionInicio = transform.position;
 
         posicionDerrota = new Vector4(-2, -2, -2);
+
+        posicionPodio = new Vector3(-5, 1, 20);
      
     }
 
@@ -65,8 +67,10 @@ public class PlayerController : MonoBehaviour
         if (count >= 25 && vidas >=0)
         {
             WinTextObject.SetActive(true);
-          
-        }else
+
+            transform.position = posicionPodio;
+        }
+        else
         {
 
             if(vidas ==0 )
@@ -108,22 +112,14 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy"))
         {
 
-          // if (vidas ==0)
-          //  {
-
-                
-              //  vidas--;
-
-          //  }
-          //  else
-           // {
+          
 
                 transform.position = posicionInicio;
                 puntos--;
                 vidas--;
                 SetConutText();
 
-           // }
+          
            
 
         }
