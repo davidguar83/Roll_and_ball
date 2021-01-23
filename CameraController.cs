@@ -9,7 +9,8 @@ public class CameraController : MonoBehaviour
     private Vector3 offset;
 
 
-    // Start is called before the first frame update
+    
+    //Se llama al inicio antes de la primera actualización del cuadro
     void Start()
     {
 
@@ -18,7 +19,8 @@ public class CameraController : MonoBehaviour
 
     }
 
-    // Update is called once per frame
+    
+    //La actualización se llama una vez por cuadro
     void LateUpdate()
     {
 
