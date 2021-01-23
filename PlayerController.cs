@@ -77,28 +77,6 @@ public class PlayerController : MonoBehaviour
             SetConutText();
 
         }
-        /* if (other.gameObject.CompareTag("Enemy")) { 
-       
-           // this.transform.position = startPos;
-           
-            if (count > 0)
-            {
-                count = count - 1;
-                SetConutText();
-
-            }
-
-        
-        }
-
-         if (other.gameObject.CompareTag("Enemy"))
-        {
-
-            other.gameObject.transform.position = new Vector4(0, 5, 4);
-
-        }
-
-        */
 
     }
 }
