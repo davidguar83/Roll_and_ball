@@ -10,12 +10,16 @@ public class PlayerController : MonoBehaviour
     private int count;
     public float speed = 0;
     public TextMeshProUGUI countText;
+    public TextMeshProUGUI puntosText;
     public GameObject WinTextObject;
-  
-
+    private int vidas;
+    public GameObject LoseTextObject;
+    private Vector3 posicionInicio;
+    private Vector4 posicionDerrota;
+    
     private float movementX;
     private float movementY;
-   
+    private int puntos;
 
     
     void Start()
@@ -24,9 +28,17 @@ public class PlayerController : MonoBehaviour
 
         count = 0;
 
+        vidas = 3;
+
         SetConutText();
 
         WinTextObject.SetActive(false);
+
+        LoseTextObject.SetActive(false);
+
+        posicionInicio = transform.position;
+
+        posicionDerrota = new Vector4(-2, -2, -2);
      
     }
 
@@ -46,12 +58,26 @@ public class PlayerController : MonoBehaviour
 
     void SetConutText()
     {
+        
 
-        countText.text = "Count: " + count.ToString();
-        if (count >= 25)
+        countText.text = "Cubos: " + count.ToString() + " Puntos: " + puntos.ToString() + " Vidas: " + vidas.ToString();
+        
+        if (count >= 25 && vidas >=0)
         {
             WinTextObject.SetActive(true);
           
+        }else
+        {
+
+            if(vidas ==0 )
+            {
+                LoseTextObject.SetActive(true);
+
+                transform.position = posicionDerrota;
+
+
+            }
+
         }
     }
 
@@ -61,7 +87,7 @@ public class PlayerController : MonoBehaviour
      
             Vector3 movement = new Vector3(movementX, 0.0f, movementY);
 
-        rb.AddForce(movement * speed);
+            rb.AddForce(movement * speed);
 
 
   
@@ -74,9 +100,32 @@ public class PlayerController : MonoBehaviour
         {
             other.gameObject.SetActive(false);
             count = count + 1;
+            puntos++;
+            
             SetConutText();
 
         }
+        if (other.gameObject.CompareTag("Enemy"))
+        {
 
+          // if (vidas ==0)
+          //  {
+
+                
+              //  vidas--;
+
+          //  }
+          //  else
+           // {
+
+                transform.position = posicionInicio;
+                puntos--;
+                vidas--;
+                SetConutText();
+
+           // }
+           
+
+        }
     }
 }
