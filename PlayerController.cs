@@ -68,6 +68,8 @@ public class PlayerController : MonoBehaviour
         {
             WinTextObject.SetActive(true);
 
+            // Si ganas te manda a una plataforma nueva
+
             transform.position = posicionPodio;
         }
         else
@@ -76,6 +78,8 @@ public class PlayerController : MonoBehaviour
             if(vidas ==0 )
             {
                 LoseTextObject.SetActive(true);
+
+                //Si pierdes te saca del tablero, modificando la posicion de la ball
 
                 transform.position = posicionDerrota;
 
@@ -100,15 +104,19 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        // En caso de colision con los cubos los desactiva y los cuenta, ademas de incrementar los puntos en 1 cada vez que los recogas
+
         if (other.gameObject.CompareTag("PickUp"))
         {
             other.gameObject.SetActive(false);
-            count = count + 1;
+            count = count + 1; // se puede definir tambien count++;
             puntos++;
             
             SetConutText();
 
         }
+
+        // E n caso de colision te quita vida y puntos, pero sigue contando los cubos recogidos
         if (other.gameObject.CompareTag("Enemy"))
         {
 
