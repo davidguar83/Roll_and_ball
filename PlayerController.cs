@@ -97,7 +97,15 @@ public class PlayerController : MonoBehaviour
 
             rb.AddForce(movement * speed);
 
+        Vector3 ace = Vector3.zero;
+        ace.x = -Input.acceleration.y;
+        ace.z = Input.acceleration.x;
 
+        if (ace.sqrMagnitude > 1)
+            ace.Normalize();
+
+        ace *= Time.deltaTime;
+        transform.Translate(ace * speed);
   
 
     }
